@@ -188,7 +188,7 @@ ID2LABEL = {
 
 def prepare_masakhaner(outdir: str = "data/original/"):
     # Get source data
-    outdir = outdir / "masakhaner"
+    outdir = f"{outdir}/masakhaner"
     os.makedirs(outdir, exist_ok=True)
 
     for split in ["train", "test", "validation"]:

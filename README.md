@@ -32,7 +32,7 @@ bash scripts/run_evaluation_masakhaner_ensemble.sh
 ### Recreating our data (or creating your own translated data)
 
 1. Copy the source data for [xSID](https://github.com/mainlp/xsid/tree/main/data/xSID-0.5) to [./data/original/raw/xSID-0.5](data/original/raw/xSID-0.5).
-2. Prepare/downloade the data original data with the following script:
+2. Prepare/download the original data with the following script:
 ```bash
 # Translate-Train
 bash scripts/prepare_data.sh
