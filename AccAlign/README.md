@@ -1,3 +1,6 @@
+# Our modified version of "Multilingual Sentence Transformer as A Multilingual Word Aligner":
+We do not own the code and give full credit to the authors. We just fixed a few bugs.
+
 # Multilingual Sentence Transformer as A Multilingual Word Aligner
 
 
