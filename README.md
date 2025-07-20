@@ -1,6 +1,6 @@
 # "The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks"
 
-The repository contains the code and sample data for our paper ["The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks"](https://arxiv.org/pdf/2505.10507). Our final dataset can be downloaded here: TBD.
+The repository contains the code and sample data for our paper ["The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks"](https://arxiv.org/pdf/2505.10507).
 
 ### Dependencies
 
@@ -14,9 +14,10 @@ pip install -e .
 
 ### Running Translate-Train, Translate-Test or Ensemble-Train-Test reusing our datasets
 
-1. Train your model using any token-classifcation training script. The original English training data can be found in [data/original/\<task\>/train-en.jsonl](data/original/masakhaner). It is the CoNLL-2003 English data for Masakhaner2.0 (with the "MISC" entity already replaced by "O") and the Snips/Facebook training data taken from xSID. The translate-train training data can be found in [data/final/nllb/accalign/\<task\>/train-translate-en-\<target_lang\>.jsonl](data/final/nllb/accalign/masakhaner/).
-2. Run inference on the evaluation set saving the logits. We expect a single logit distribution per word (i.e., just label the first sub-word in case the word is split into multiple subwords). We provide an example test set in [data/final/nllb/accalign/masakhaner](data/final/nllb/accalign/masakhaner) and the corresponding example logits in [data/logits/masakhaner](data/logits/masakhaner)
-3. Run one of the three scripts depending on your translation-based strategy for evaluation:
+1. Copy our final data from TBD to [data](data) folder.
+2. Train your model using any token-classifcation training script. The original English training data can be found in [data/original/\<task\>/train-en.jsonl](data/original/masakhaner). It is the CoNLL-2003 English data for Masakhaner2.0 (with the "MISC" entity already replaced by "O") and the Snips/Facebook training data taken from xSID. The translate-train training data can be found in [data/final/nllb/accalign/\<task\>/train-translate-en-\<target_lang\>.jsonl](data/final/nllb/accalign/masakhaner/).
+3. Run inference on the evaluation set saving the logits. We expect a single logit distribution per word (i.e., just label the first sub-word in case the word is split into multiple subwords). We provide an example test set in [data/final/nllb/accalign/masakhaner](data/final/nllb/accalign/masakhaner) and the corresponding example logits in [data/logits/masakhaner](data/logits/masakhaner)
+4. Run one of the three scripts depending on your translation-based strategy for evaluation:
 
 ```bash
 # Translate-Train
