@@ -1,0 +1,4 @@
+.vscode/
+checkpoint_adapter/
+*:Zone.Identifier
+__pycache__/
