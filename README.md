@@ -19,6 +19,7 @@ pip install -e .
 4. Run one of the three scripts depending on your translation-based strategy for evaluation:
 
 ```bash
+# Evaluation with fine-tuned AccAlign and XLM-R as downstream model (adjust the scripts to your needs!)
 # Translate-Train
 bash scripts/run_evaluation_masakhaner_ttrain.sh
 # Translate-Test
