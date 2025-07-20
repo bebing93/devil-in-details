@@ -1,10 +1,9 @@
 # "The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks"
 
-The repository contains the code and sample data for our paper ["The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks"](https://arxiv.org/pdf/2505.10507).
+The repository contains the code and sample data for our paper [The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks](https://arxiv.org/pdf/2505.10507).
 
 ### Dependencies
 
-We implemented our code using python 3.10. \
 Start by installing the dependencies:
 
 ```bash
