@@ -4,8 +4,8 @@ The repository contains the code and sample data for our paper ["The Devil Is in
 
 ### Dependencies
 
-We implemented our code using python 3.10.
-First, install the dependencies:
+We implemented our code using python 3.10. \
+Start by installing the dependencies:
 
 ```bash
 pip install -r requirements.txt
