@@ -1,5 +1,5 @@
 .vscode/
-checkpoint_adapter/
+checkpoint-adapter/
 *:Zone.Identifier
 __pycache__/
 .git/
