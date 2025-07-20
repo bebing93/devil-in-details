@@ -1,4 +1,7 @@
+sacremoses
+jieba
 torch==2.6.0
 transformers==4.47.1
 datasets==3.4.1
-sacremoses
+evaluate==0.4.2
+adapters>=0.2.1
