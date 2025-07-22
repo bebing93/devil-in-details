@@ -1,9 +1,10 @@
 #!/bin/bash
-WORK_DIR=/home/bee82nf/devil-in-details
+WORK_DIR=$PWD
 TASK="xsid"
 ORIGINAL_DATA_FILE=${WORK_DIR}/data/original/${TASK}/train-en.jsonl
 TEXT_COLUMN="tokens"
 ORIGINAL_LANG="en"
+ALIGNER=awesomealign_noft
 
 for translated_lang in ar da de de-st id it kk nl sr tr zh; do
     echo "Process ${translated_lang}"
@@ -19,11 +20,11 @@ for translated_lang in ar da de de-st id it kk nl sr tr zh; do
     # File containing the alignments produced by the word aligner
     ALIGNMENT_FILE=$OUT_DIR/awesome_noft-${ORIGINAL_LANG}-${translated_lang}-tokens.txt
     # File for final dataset
-    DATASET_FILE=${WORK_DIR}/data/final/nllb/awesomealign_noft/${TASK}/train-translate-${ORIGINAL_LANG}-${translated_lang}.jsonl
+    DATASET_FILE=${WORK_DIR}/data/final/nllb/${ALIGNER}/${TASK}/train-translate-${ORIGINAL_LANG}-${translated_lang}.jsonl
     echo "Prepare original and translated data for alignment"
     python $WORK_DIR/devil_in_details/alignment/prepare_alignment.py $ORIGINAL_DATA_FILE $TEXT_COLUMN $translated_lang $TRANSLATED_DATA_FILE $ORIGINAL_ALIGN_IN_FILE $TRANSLATED_ALIGN_IN_FILE
     echo "Produce word alignments"
     bash $WORK_DIR/scripts/awesome_align.sh $ORIGINAL_ALIGN_IN_FILE $TRANSLATED_ALIGN_IN_FILE $MERGED_FILE $ALIGNMENT_FILE
     echo "Postprocess word alignments"
-    python $WORK_DIR/devil_in_details/alignment/postprocess_alignment_ttrain.py $ORIGINAL_DATA_FILE $TRANSLATED_ALIGN_IN_FILE $ALIGNMENT_FILE $DATASET_FILE --complete_source --complete_target --complete_instance
+    python $WORK_DIR/devil_in_details/alignment/postprocess_alignment_ttrain.py $ORIGINAL_DATA_FILE $TRANSLATED_ALIGN_IN_FILE $ALIGNMENT_FILE $DATASET_FILE --tag_name entity_tags --complete_source --complete_target --complete_instance
 done

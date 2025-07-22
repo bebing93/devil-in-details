@@ -1,15 +1,15 @@
 #!/bin/bash
-WORK_DIR=/home/bee82nf/devil-in-details
+WORK_DIR=$PWD
 TASK="xsid"
-ORIGINAL_DATA_FILE=${WORK_DIR}/data/original/${TASK}/test-bam.jsonl
 TEXT_COLUMN="tokens"
 TRANSLATED_LANG="en"
-
+ALIGNER="accalign_noft"
 
 # Translate all target task languages (if possible) and all sample languages
 # Only high resource languages are considered
 for original_lang in ar da de de-st id it kk nl sr tr zh; do
     echo "Process ${original_lang}"
+    ORIGINAL_DATA_FILE=${WORK_DIR}/data/original/${TASK}/test-${original_lang}.jsonl
     OUT_DIR=${WORK_DIR}/data/intermediate/nllb/${TASK}/test-translate-${original_lang}-${TRANSLATED_LANG}
     # File containing the translations
     TRANSLATED_DATA_FILE=$OUT_DIR/test-translate-${original_lang}-${TRANSLATED_LANG}-${TEXT_COLUMN}-processed.jsonl
@@ -22,7 +22,7 @@ for original_lang in ar da de de-st id it kk nl sr tr zh; do
     # Alignment always from source to target (i.e., we project form the translated English data to the clean target language data)
     ALIGNMENT_FILE=acc_noft-${TRANSLATED_LANG}-${original_lang}-${TEXT_COLUMN}.txt
     # File for final dataset
-    DATASET_FILE=${WORK_DIR}/data/final/nllb/accalign_noft/${TASK}/test-translate-${original_lang}-${TRANSLATED_LANG}.jsonl
+    DATASET_FILE=${WORK_DIR}/data/final/nllb/${ALIGNER}/${TASK}/test-translate-${original_lang}-${TRANSLATED_LANG}.jsonl
     echo "Prepare original and translated data for alignment"
     python $WORK_DIR/devil_in_details/alignment/prepare_alignment.py $ORIGINAL_DATA_FILE $TEXT_COLUMN $TRANSLATED_LANG $TRANSLATED_DATA_FILE $ORIGINAL_ALIGN_IN_FILE $TRANSLATED_ALIGN_IN_FILE --tokenizer moses
     echo "Produce word alignments"
@@ -30,5 +30,5 @@ for original_lang in ar da de de-st id it kk nl sr tr zh; do
     bash $WORK_DIR/scripts/acc_align_no_ft.sh $TRANSLATED_ALIGN_IN_FILE $ORIGINAL_ALIGN_IN_FILE $ALIGNMENT_DIR $ALIGNMENT_FILE
     echo "Postprocess word alignments"
     # We treat the translated data as source in T-Test
-    python $WORK_DIR/devil_in_details/alignment/postprocess_alignment_ttest.py $TRANSLATED_ALIGN_IN_FILE $ORIGINAL_DATA_FILE $ALIGNMENT_DIR/$ALIGNMENT_FILE.6 $DATASET_FILE
+    python $WORK_DIR/devil_in_details/alignment/postprocess_alignment_ttest.py $TRANSLATED_ALIGN_IN_FILE $ORIGINAL_DATA_FILE $ALIGNMENT_DIR/$ALIGNMENT_FILE.6 $DATASET_FILE --tag_name entity_tags
 done

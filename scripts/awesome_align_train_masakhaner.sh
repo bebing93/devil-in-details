@@ -1,11 +1,12 @@
 #!/bin/bash
-WORK_DIR=/home/bee82nf/devil-in-details
+WORK_DIR=$PWD
 TASK="masakhaner"
 ORIGINAL_DATA_FILE=${WORK_DIR}/data/original/${TASK}/train-en.jsonl
 TEXT_COLUMN="tokens"
 ORIGINAL_LANG="en"
+ALIGNER=awesomealign_noft
 
-for translated_lang in bam; do # ewe fon hau ibo kin lug luo mos nya sna swa tsn twi wol xho yor zul
+for translated_lang in bam ewe fon hau ibo kin lug luo mos nya sna swa tsn twi wol xho yor zul; do # ewe fon hau ibo kin lug luo mos nya sna swa tsn twi wol xho yor zul
     echo "Process ${translated_lang}"
     OUT_DIR=${WORK_DIR}/data/intermediate/nllb/${TASK}/train-translate-${ORIGINAL_LANG}-${translated_lang}
     # File containing the translations
@@ -19,7 +20,7 @@ for translated_lang in bam; do # ewe fon hau ibo kin lug luo mos nya sna swa tsn
     # File containing the alignments produced by the word aligner
     ALIGNMENT_FILE=$OUT_DIR/awesome_noft-${ORIGINAL_LANG}-${translated_lang}-tokens.txt
     # File for final dataset
-    DATASET_FILE=${WORK_DIR}/data/final/nllb/awesomealign_noft/${TASK}/train-translate-${ORIGINAL_LANG}-${translated_lang}.jsonl
+    DATASET_FILE=${WORK_DIR}/data/final/nllb/${ALIGNER}/${TASK}/train-translate-${ORIGINAL_LANG}-${translated_lang}.jsonl
     echo "Prepare original and translated data for alignment"
     python $WORK_DIR/devil_in_details/alignment/prepare_alignment.py $ORIGINAL_DATA_FILE $TEXT_COLUMN $translated_lang $TRANSLATED_DATA_FILE $ORIGINAL_ALIGN_IN_FILE $TRANSLATED_ALIGN_IN_FILE
     echo "Produce word alignments"
