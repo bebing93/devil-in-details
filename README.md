@@ -55,6 +55,25 @@ bash scripts/acc_align_no_ft_test_masakhaner.sh
 # We provide similar scripts for xSID, and awesome-align as well as fine-tuned AccAlign
 ```
 
+### Citation
 
-
+```
+@inproceedings{ebing-glavas-2025-devil,
+    title = "The Devil Is in the Word Alignment Details: On Translation-Based Cross-Lingual Transfer for Token Classification Tasks",
+    author = "Ebing, Benedikt  and
+      Glava{\v{s}}, Goran",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2025",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.findings-acl.931/",
+    pages = "18111--18128",
+    ISBN = "979-8-89176-256-5",
+}
+```
 
